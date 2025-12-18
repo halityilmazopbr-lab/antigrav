@@ -16,7 +16,9 @@ echo Otomatik Repo Adresi Tanimlandi.
 set REPO_URL=https://github.com/halityilmazopbr-lab/antigrav.git
 
 echo.
-echo [1/4] Git kimligi ayarlaniyor...
+echo [1/5] Eski hesap bilgileri temizleniyor (Hesap Karisikligini Onleme)...
+cmdkey /delete:git:https://github.com >nul 2>&1
+echo Lutfen acilacak tarayici penceresinde SIFIRDAN giris yapin.
 git config user.email "ogrenci@ykscepte.app"
 git config user.name "YKS Cepte Geliştiricisi"
 
