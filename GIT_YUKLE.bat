@@ -13,7 +13,7 @@ echo.
 
 :URL_SOR
 echo Otomatik Repo Adresi Tanimlandi.
-set REPO_URL=https://github.com/Halit-155/antigrav.git
+set REPO_URL=https://github.com/halityilmazopbr-lab/antigrav.git
 
 echo.
 echo [1/4] Git kimligi ayarlaniyor...
