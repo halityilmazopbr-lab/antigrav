@@ -1,0 +1,254 @@
+import 'package:flutter/material.dart';
+
+class Ogrenci {
+  String id, tcNo, sifre, ad, sinif, fotoUrl, hedefUniversite, hedefBolum;
+  int puan, girisSayisi, hedefPuan;
+  String? atananOgretmenId;
+  int gunlukSeri;
+
+  Ogrenci({
+    required this.id,
+    this.tcNo = "",
+    this.sifre = "123456",
+    required this.ad,
+    required this.sinif,
+    this.puan = 0,
+    this.girisSayisi = 0,
+    this.atananOgretmenId,
+    this.fotoUrl = "",
+    this.hedefUniversite = "Hedef Yok",
+    this.hedefBolum = "",
+    this.hedefPuan = 0,
+    this.gunlukSeri = 0,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'tcNo': tcNo,
+        'sifre': sifre,
+        'ad': ad,
+        'sinif': sinif,
+        'puan': puan,
+        'girisSayisi': girisSayisi,
+        'hedefPuan': hedefPuan,
+        'fotoUrl': fotoUrl,
+        'hedefUniversite': hedefUniversite,
+        'hedefBolum': hedefBolum,
+        'gunlukSeri': gunlukSeri
+      };
+
+  factory Ogrenci.fromJson(Map<String, dynamic> json) => Ogrenci(
+        id: json['id'],
+        tcNo: json['tcNo'],
+        sifre: json['sifre'],
+        ad: json['ad'],
+        sinif: json['sinif'],
+        puan: json['puan'],
+        girisSayisi: json['girisSayisi'],
+        hedefPuan: json['hedefPuan'],
+        fotoUrl: json['fotoUrl'],
+        hedefUniversite: json['hedefUniversite'],
+        hedefBolum: json['hedefBolum'],
+        gunlukSeri: json['gunlukSeri'] ?? 0,
+      );
+}
+
+class Ogretmen {
+  String id, tcNo, sifre, ad, brans;
+  int girisSayisi;
+  Ogretmen({
+    required this.id,
+    this.tcNo = "",
+    this.sifre = "123456",
+    required this.ad,
+    required this.brans,
+    this.girisSayisi = 0,
+  });
+}
+
+class Gorev {
+  int hafta;
+  String gun, saat, ders, konu, aciklama;
+  bool yapildi;
+
+  Gorev({
+    required this.hafta,
+    required this.gun,
+    required this.saat,
+    required this.ders,
+    required this.konu,
+    this.aciklama = "",
+    this.yapildi = false,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'hafta': hafta,
+        'gun': gun,
+        'saat': saat,
+        'ders': ders,
+        'konu': konu,
+        'aciklama': aciklama,
+        'yapildi': yapildi
+      };
+
+  factory Gorev.fromJson(Map<String, dynamic> json) => Gorev(
+        hafta: json['hafta'],
+        gun: json['gun'],
+        saat: json['saat'],
+        ders: json['ders'],
+        konu: json['konu'],
+        aciklama: json['aciklama'],
+        yapildi: json['yapildi'],
+      );
+}
+
+class DenemeSonucu {
+  String ogrenciId, tur;
+  DateTime tarih;
+  double toplamNet;
+  Map<String, double> dersNetleri;
+
+  DenemeSonucu({
+    required this.ogrenciId,
+    required this.tur,
+    required this.tarih,
+    required this.toplamNet,
+    required this.dersNetleri,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'ogrenciId': ogrenciId,
+        'tur': tur,
+        'tarih': tarih.toIso8601String(),
+        'toplamNet': toplamNet,
+        'dersNetleri': dersNetleri
+      };
+
+  factory DenemeSonucu.fromJson(Map<String, dynamic> json) => DenemeSonucu(
+        ogrenciId: json['ogrenciId'],
+        tur: json['tur'],
+        tarih: DateTime.parse(json['tarih']),
+        toplamNet: json['toplamNet'],
+        dersNetleri: Map<String, double>.from(json['dersNetleri']),
+      );
+}
+
+class SoruCozumKaydi {
+  String ogrenciId, ders, konu;
+  int dogru, yanlis;
+  DateTime tarih;
+
+  SoruCozumKaydi({
+    required this.ogrenciId,
+    required this.ders,
+    required this.konu,
+    required this.dogru,
+    required this.yanlis,
+    required this.tarih,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'ogrenciId': ogrenciId,
+        'ders': ders,
+        'konu': konu,
+        'dogru': dogru,
+        'yanlis': yanlis,
+        'tarih': tarih.toIso8601String()
+      };
+
+  factory SoruCozumKaydi.fromJson(Map<String, dynamic> json) => SoruCozumKaydi(
+        ogrenciId: json['ogrenciId'],
+        ders: json['ders'],
+        konu: json['konu'],
+        dogru: json['dogru'],
+        yanlis: json['yanlis'],
+        tarih: DateTime.parse(json['tarih']),
+      );
+}
+
+class Rozet {
+  String id, ad, aciklama, kategori, seviye;
+  int puanDegeri, hedefSayi, mevcutSayi;
+  IconData ikon;
+  Color renk;
+  bool kazanildi;
+  bool imgVar;
+
+  Rozet({
+    required this.id,
+    required this.ad,
+    required this.aciklama,
+    required this.kategori,
+    required this.seviye, // Bronz, Gümüş, Altın...
+    required this.puanDegeri,
+    required this.ikon,
+    required this.renk,
+    required this.hedefSayi,
+    required this.mevcutSayi,
+    this.kazanildi = false,
+    this.imgVar = false,
+  });
+
+  Map<String, dynamic> toStateJson() => {
+        'id': id,
+        'mevcutSayi': mevcutSayi,
+        'kazanildi': kazanildi
+      };
+}
+
+class KonuDetay {
+  String ad;
+  int agirlik;
+  KonuDetay(this.ad, this.agirlik);
+}
+
+class PdfDeneme {
+  String baslik;
+  DateTime tarih;
+  String dosyaYolu;
+  PdfDeneme(this.baslik, this.tarih, this.dosyaYolu);
+}
+
+class OkulDersi {
+  String ad;
+  double yazili1, yazili2, performans;
+  OkulDersi({
+    required this.ad,
+    this.yazili1 = 0,
+    this.yazili2 = 0,
+    this.performans = 0,
+  });
+  double get ortalama {
+    int b = 0;
+    if (yazili1 > 0) b++;
+    if (yazili2 > 0) b++;
+    if (performans > 0) b++;
+    return b == 0 ? 0 : (yazili1 + yazili2 + performans) / b;
+  }
+}
+
+class KayitliProgramGecmisi {
+  DateTime tarih;
+  String tur;
+  List<Gorev> programVerisi;
+  KayitliProgramGecmisi({
+    required this.tarih,
+    required this.tur,
+    required this.programVerisi,
+  });
+}
+
+class DersGiris {
+  String n;
+  int soruSayisi;
+  TextEditingController d = TextEditingController(),
+      y = TextEditingController();
+  double net = 0;
+  DersGiris(this.n, this.soruSayisi);
+}
+
+class Mesaj {
+  String text;
+  bool isUser;
+  Mesaj({required this.text, required this.isUser});
+}
